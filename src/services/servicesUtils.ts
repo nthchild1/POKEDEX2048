@@ -13,7 +13,10 @@ export const generateGetResourceList =
         : ''
     }`;
 
-    return client.get(url).then(({data}) => data);
+    return client
+      .get(url)
+      .then(({data}) => data)
+      .catch(error => console.error(error.toJSON()));
   };
 
 export const generateGetSingleResource = (path, client) => {

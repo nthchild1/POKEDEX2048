@@ -4,7 +4,6 @@ import styled from 'styled-components/native';
 import {useStorage} from '../../reducers/storage/useStorage';
 import {populatePokemonDB} from './Categories.thunks';
 import ItemCard from '../../../src/uikit/ItemCard/ItemCard';
-import SplashScreen from 'react-native-splash-screen';
 import {createStackNavigator} from '@react-navigation/stack';
 import ResourceList from './ResourceList/ResourceList';
 
@@ -43,7 +42,7 @@ const CategoriesScreen = ({navigation}) => {
             fontWeight: 'bold',
             margin: '5%',
           }}>
-          Categorías
+          Categories
         </Text>
         <View
           style={{
@@ -54,7 +53,7 @@ const CategoriesScreen = ({navigation}) => {
           <View>
             <ItemCard
               size={150}
-              title={'Regiones'}
+              title={'Regions'}
               imageBackgroundSource={
                 'https://static.wikia.nocookie.net/ssb/images/8/81/Kanto.jpg/revision/latest?cb=20071231212224'
               }
@@ -66,7 +65,7 @@ const CategoriesScreen = ({navigation}) => {
               }}
             />
             <ItemCard
-              title={'Generaciones'}
+              title={'Generations'}
               size={150}
               footerColor={'#d60d0d'}
               imageBackgroundSource={
@@ -79,7 +78,7 @@ const CategoriesScreen = ({navigation}) => {
               }}
             />
             <ItemCard
-              title={'Habilidades'}
+              title={'Abilities'}
               size={150}
               footerColor={'#ffd600'}
               imageBackgroundSource={
@@ -93,7 +92,7 @@ const CategoriesScreen = ({navigation}) => {
           <View>
             <ItemCard
               size={150}
-              title={'Tipos'}
+              title={'Types'}
               footerColor={'#8a20ff'}
               imageBackgroundSource={
                 'https://res.cloudinary.com/lmn/image/upload/c_limit,h_360,w_640/e_sharpen:100/f_auto,fl_lossy,q_auto/v1/gameskinnyc/p/o/k/pokemon-types-image-drewlinne-deviant-art-ac4b2.jpg'
@@ -103,7 +102,7 @@ const CategoriesScreen = ({navigation}) => {
               }}
             />
             <ItemCard
-              title={'Versiones'}
+              title={'Versions'}
               size={150}
               footerColor={'#20a212'}
               imageBackgroundSource={

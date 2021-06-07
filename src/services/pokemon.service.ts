@@ -1,5 +1,6 @@
 import axios from 'axios';
-import FirebaseService from '../../src/services/firebase.service';
+import {gql, useQuery} from '@apollo/client';
+
 import {
   generateGetResourceList,
   generateGetSingleResource,
@@ -9,7 +10,19 @@ class PokemonService {
   public getPokemonAbilities: (queries?: {}) => any;
 
   constructor() {
-    this.serviceConfig = FirebaseService.remoteConfig.SERVICES_CONFIG.pokemon;
+    this.serviceConfig = {
+      baseUrl: 'https://pokeapi.co/api/v2',
+      endpoints: {
+        abilities: '/abilities',
+        generations: '/generations',
+        regions: '/regions',
+        types: '/types',
+        versions: '/versions',
+        pokemon: '/pokemon',
+        categories: '/categories',
+      },
+    };
+
     this.client = axios.create({
       baseURL: this.serviceConfig.baseURL,
     });
@@ -35,7 +48,7 @@ class PokemonService {
     );
 
     this.getPokemonVersions = generateGetResourceList(
-      this.serviceConfig.endpoints.types,
+      this.serviceConfig.endpoints.versions,
       this.client,
     );
 
@@ -43,18 +56,6 @@ class PokemonService {
       this.serviceConfig.endpoints.pokemon,
       this.client,
     );
-
-    this.getAllPokemon = generateGetResourceList(
-      this.serviceConfig.endpoints.pokemon,
-      this.client,
-    );
-  }
-
-  async getEncounterAreaById(pokemonId) {
-    const URL =
-      'pokemon/' + pokemonId + '/' + this.serviceConfig.endpoints.encounters;
-
-    return this.client.get(URL).then(({data}) => data);
   }
 }
 

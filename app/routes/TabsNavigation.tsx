@@ -31,7 +31,7 @@ function TabsNavigation() {
       })}
       initialRouteName={'Pokedex'}>
       <Tab.Screen name="Pokedex" component={Pokedex} />
-      <Tab.Screen name="Categorías" component={Categories} />
+      <Tab.Screen name="Categories" component={Categories} />
     </Tab.Navigator>
   );
 }

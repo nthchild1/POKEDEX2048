@@ -9,11 +9,20 @@ import {
 } from 'react-native';
 import ItemCard from '../ItemCard/ItemCard';
 import {normalizePx} from '../../utils/utilFunctions';
+import {useQuery} from '@apollo/client';
+import {GET_POKEMON_DETAILS, GET_POKEMONS} from '../../graphQL/pokemon';
+import PokemonDetails from '../PokemonDetails/PokemonDetails';
 
-const PokemonCard = ({item: pokemon}) => {
-  const {types} = pokemon;
+const PokemonCard = ({item, index}) => {
+  const {loading, error, data} = useQuery(GET_POKEMON_DETAILS, {
+    variables: {
+      name: item.name,
+    },
+  });
 
-  const pokemonType = types[0].type.name;
+  const pokemon = data?.pokemon ?? {};
+
+  const pokemonType = pokemon?.types?.[0].type.name;
 
   const typesImages = {
     normal:
@@ -66,7 +75,7 @@ const PokemonCard = ({item: pokemon}) => {
     fairy: 'pink',
   };
 
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(index === 0 ? true : false);
 
   useEffect(() => {
     if (Platform.OS === 'android') {
@@ -89,56 +98,14 @@ const PokemonCard = ({item: pokemon}) => {
       }}>
       <ItemCard
         size={150}
-        title={pokemon.title}
+        title={item.name}
         footerColor={typesColors[pokemonType]}
-        itemImageSource={
-          !isExpanded ? undefined : pokemon.sprites.front_default
-        }
+        itemImageSource={item.sprites.front_default}
         imageBackgroundSource={typesImages[pokemonType]}
         onPress={expand}
       />
       {isExpanded && (
-        <View
-          style={{
-            backgroundColor: '#dd4e4e',
-            flex: 1,
-            marginRight: normalizePx(20),
-            marginTop: normalizePx(35),
-            marginBottom: normalizePx(35),
-            padding: 15,
-            borderRadius: 15,
-            justifyContent: 'center',
-            alignItems: 'flex-start',
-          }}>
-          <Text style={{color: 'white', fontSize: 12}}>
-            Altura : {pokemon.height}
-          </Text>
-          <Text style={{color: 'white', fontSize: 12}}>
-            Tipos : {pokemonType}
-          </Text>
-          <Text style={{color: 'white', fontSize: 12}}>
-            Habilidades :{' '}
-            {pokemon.abilities.map(({ability}) => ability.name).join(', ')}
-          </Text>
-          <Text style={{color: 'white', fontSize: 12, marginTop: 10}}>
-            stats:
-          </Text>
-          {pokemon.stats.map((stat) => {
-            return (
-              <Text style={{color: 'white', fontSize: 10}}>
-                {stat.stat.name + ' : ' + stat.base_stat}
-              </Text>
-            );
-          })}
-        </View>
-      )}
-      {!isExpanded && (
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <Image
-            source={{uri: pokemon.sprites.front_default}}
-            style={{width: 200, height: 200, alignSelf: 'center'}}
-          />
-        </View>
+        <PokemonDetails pokemon={pokemon} pokemonType={pokemonType} />
       )}
     </View>
   );

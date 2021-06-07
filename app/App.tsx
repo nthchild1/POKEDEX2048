@@ -5,9 +5,9 @@ import 'react-native-gesture-handler';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {NavigationContainer} from '@react-navigation/native';
-import {ThemeProvider} from 'styled-components';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
+import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
 
 const Initializer: () => React$Node = () => {
   const {store, persistor} = buildStore();
@@ -16,13 +16,21 @@ const Initializer: () => React$Node = () => {
     SplashScreen.hide();
   }, []);
 
+  // Initialize Apollo Client
+  const client = new ApolloClient({
+    uri: 'https://graphql-pokeapi.vercel.app/api/graphql',
+    cache: new InMemoryCache(),
+  });
+
   return (
     <NavigationContainer>
       <Provider {...{store}}>
         <PersistGate persistor={persistor}>
-          <SafeAreaProvider>
-            <AppNavigator />
-          </SafeAreaProvider>
+          <ApolloProvider client={client}>
+            <SafeAreaProvider>
+              <AppNavigator />
+            </SafeAreaProvider>
+          </ApolloProvider>
         </PersistGate>
       </Provider>
     </NavigationContainer>
