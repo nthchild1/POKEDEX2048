@@ -5,14 +5,18 @@ import * as Progress from 'react-native-progress';
 import {colors} from '../../constants';
 import styled from 'styled-components/native';
 
-interface PokemonDetailsProps {}
+interface PokemonDetailsProps {
+  isExpanded: boolean;
+  pokemon: object;
+  pokemonType: string;
+}
 
 const Container = styled.View`
   background-color: ${({pokemonRed}) => pokemonRed};
   flex: 1;
-  margin-right: ${normalizePx(20)};
-  margin-top: ${normalizePx(35)};
-  margin-bottom: ${normalizePx(35)};
+  margin-right: ${normalizePx(20)}px;
+  margin-top: ${normalizePx(35)}px;
+  margin-bottom: ${normalizePx(35)}px;
   border-radius: 15px;
   justify-content: center;
   align-items: flex-start;
@@ -29,7 +33,7 @@ const Value = styled.Text`
   color: white;
 `;
 
-const Stats = styled.View`
+export const Stats = styled.View`
   background-color: white;
   flex: 1;
   width: 100%;
@@ -40,17 +44,18 @@ const Stats = styled.View`
 function PokemonDetails({
   pokemon,
   pokemonType,
+  isExpanded,
 }: PokemonDetailsProps): JSX.Element {
   const {pokemonRed} = colors;
 
-  return (
+  return isExpanded ? (
     <Container {...{pokemonRed}}>
       <View style={{padding: '5%'}}>
         <Label>
           HEIGHT : <Value>{pokemon.height} ft</Value>
         </Label>
         <Label>
-          TYPES : <Value> {pokemonType}</Value>
+          TYPE : <Value> {pokemonType}</Value>
         </Label>
         <Label>
           ABILITIES :
@@ -62,19 +67,51 @@ function PokemonDetails({
       <Stats>
         {pokemon?.stats?.map(stat => {
           return (
-            <>
+            <View key={stat?.stat?.name + ' : ' + stat?.base_stat}>
               <Text style={{color: 'black', fontSize: 10}}>
                 {stat?.stat?.name + ' : ' + stat?.base_stat}
               </Text>
               <Progress.Bar progress={stat?.base_stat / 100} width={100} />
-            </>
+            </View>
           );
         })}
       </Stats>
     </Container>
+  ) : (
+    (null as unknown as JSX.Element)
   );
 }
 
-PokemonDetails.propTypes = {};
+PokemonDetails.defaultProps = {
+  isExpanded: true,
+  pokemonType: 'fire',
+  pokemon: {
+    height: 5,
+    id: 5,
+    sprites: {
+      front_default: '',
+    },
+    types: {
+      type: {
+        name: 'fire',
+      },
+    },
+    abilities: [
+      {
+        ability: {
+          name: 'overgrow',
+        },
+      },
+    ],
+    stats: [
+      {
+        stat: {
+          name: 'hp',
+        },
+        base_stat: 54,
+      },
+    ],
+  },
+};
 
 export default PokemonDetails;

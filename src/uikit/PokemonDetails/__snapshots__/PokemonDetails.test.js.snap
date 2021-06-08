@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  pokemonRed="#dd4e4e"
+  style={
+    Array [
+      Object {
+        "alignItems": "flex-start",
+        "backgroundColor": "#dd4e4e",
+        "borderRadius": 15,
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "justifyContent": "center",
+        "marginBottom": 35,
+        "marginRight": 20,
+        "marginTop": 35,
+        "overflow": "hidden",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "padding": "5%",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "black",
+            "fontSize": 10,
+            "fontWeight": "bold",
+          },
+        ]
+      }
+    >
+      HEIGHT : 
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "white",
+            },
+          ]
+        }
+      >
+        5
+         ft
+      </Text>
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "black",
+            "fontSize": 10,
+            "fontWeight": "bold",
+          },
+        ]
+      }
+    >
+      TYPE : 
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "white",
+            },
+          ]
+        }
+      >
+         
+        fire
+      </Text>
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "black",
+            "fontSize": 10,
+            "fontWeight": "bold",
+          },
+        ]
+      }
+    >
+      ABILITIES :
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "white",
+            },
+          ]
+        }
+      >
+        overgrow
+      </Text>
+    </Text>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "paddingBottom": 15,
+          "paddingLeft": 15,
+          "paddingRight": 15,
+          "paddingTop": 15,
+          "width": "100%",
+        },
+      ]
+    }
+  >
+    <View>
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 10,
+          }
+        }
+      >
+        hp : 54
+      </Text>
+      <View
+        animated={true}
+        animationConfig={
+          Object {
+            "bounciness": 0,
+          }
+        }
+        animationType="spring"
+        indeterminate={false}
+        indeterminateAnimationDuration={1000}
+        onLayout={[Function]}
+        progress={0.54}
+        style={
+          Array [
+            Object {
+              "backgroundColor": undefined,
+              "borderColor": "rgba(0, 122, 255, 1)",
+              "borderRadius": 4,
+              "borderWidth": 1,
+              "overflow": "hidden",
+              "width": 100,
+            },
+            undefined,
+          ]
+        }
+        useNativeDriver={false}
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "rgba(0, 122, 255, 1)",
+              "height": 6,
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+                Object {
+                  "translateX": -22.54,
+                },
+                Object {
+                  "scaleX": 0.540046,
+                },
+              ],
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+</View>
+`;

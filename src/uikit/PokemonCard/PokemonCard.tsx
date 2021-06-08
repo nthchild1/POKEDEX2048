@@ -40,6 +40,8 @@ function PokemonCard({item, index}: PokemonCardProps): JSX.Element {
     },
   });
 
+  console.log(data);
+
   const pokemon = data?.pokemon ?? {};
   const pokemonType = pokemon?.types?.[0].type.name;
   const {id} = pokemon;
@@ -68,9 +70,11 @@ function PokemonCard({item, index}: PokemonCardProps): JSX.Element {
         imageBackgroundSource={typesImages[pokemonType]}
         onPress={expand}
       />
-      {isExpanded && (
-        <PokemonDetails pokemon={pokemon} pokemonType={pokemonType} />
-      )}
+      <PokemonDetails
+        pokemon={pokemon}
+        pokemonType={pokemonType}
+        isExpanded={isExpanded}
+      />
     </Container>
   );
 }

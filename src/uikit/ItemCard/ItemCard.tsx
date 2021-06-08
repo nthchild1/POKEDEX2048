@@ -26,7 +26,7 @@ const StyledImageBackground = styled(ImageBackground)`
 
 const Title = styled.Text`
   font-weight: bold;
-  font-size: ${normalizePx(21)};
+  font-size: ${normalizePx(21)}px;
   color: white;
 `;
 
