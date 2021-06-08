@@ -3,9 +3,16 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import {useQuery} from '@apollo/client';
 import {GET_POKEMON_DETAILS} from '../../graphQL/pokemon';
 
-function PokedexSearchBar(props) {
-  const [searchString, setSearchString] = useState<string>('');
+interface PokedexSearchBarProps {
+  setShowingSearchResults: Function;
+  setMappedPokemon: Function;
+}
 
+function PokedexSearchBar({
+  setShowingSearchResults,
+  setMappedPokemon,
+}: PokedexSearchBarProps): JSX.Element {
+  const [searchString, setSearchString] = useState<string>('');
   const {loading, error, data} = useQuery(GET_POKEMON_DETAILS, {
     variables: {
       name: searchString,
@@ -17,13 +24,13 @@ function PokedexSearchBar(props) {
       const {pokemon} = data;
 
       if (pokemon.id != null) {
-        props.setShowingSearchResults(true);
-        props.setMappedPokemon([pokemon]);
+        setShowingSearchResults(true);
+        setMappedPokemon([pokemon]);
       } else {
-        props.setShowingSearchResults(false);
+        setShowingSearchResults(false);
       }
     } else {
-      props.setShowingSearchResults(false);
+      setShowingSearchResults(false);
     }
   };
 

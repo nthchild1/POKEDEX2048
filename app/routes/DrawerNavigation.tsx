@@ -7,8 +7,12 @@ const Drawer = createDrawerNavigator();
 
 function DrawerNavigation() {
   return (
-    <Drawer.Navigator drawerContent={(props) => <Text>Drawer Content</Text>}>
-      <Drawer.Screen name="TabsNavigation" component={TabsNavigation} />
+    <Drawer.Navigator>
+      <Drawer.Screen
+        name="TabsNavigation"
+        options={{title: 'Pokedex'}}
+        component={TabsNavigation}
+      />
     </Drawer.Navigator>
   );
 }

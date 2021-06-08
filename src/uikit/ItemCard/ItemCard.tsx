@@ -24,6 +24,12 @@ const StyledImageBackground = styled(ImageBackground)`
   padding: ${() => normalizePx(20)}px;
 `;
 
+const Title = styled.Text`
+  font-weight: bold;
+  font-size: ${normalizePx(21)};
+  color: white;
+`;
+
 function ItemCard({
   title,
   size,
@@ -46,22 +52,7 @@ function ItemCard({
         />
         <Text>{extract}</Text>
       </StyledImageBackground>
-      <Text
-        style={{
-          fontWeight: 'bold',
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 4,
-          },
-          shadowOpacity: 1,
-          shadowRadius: 4.65,
-          elevation: 8,
-          fontSize: normalizePx(21),
-          color: 'white',
-        }}>
-        {title}
-      </Text>
+      <Title>{title}</Title>
     </Card>
   );
 }

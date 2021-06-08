@@ -2,41 +2,64 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {normalizePx} from '../../utils/utilFunctions';
 import * as Progress from 'react-native-progress';
+import {colors} from '../../constants';
+import styled from 'styled-components/native';
 
-const PokemonDetails = ({pokemon, pokemonType}) => {
+interface PokemonDetailsProps {}
+
+const Container = styled.View`
+  background-color: ${({pokemonRed}) => pokemonRed};
+  flex: 1;
+  margin-right: ${normalizePx(20)};
+  margin-top: ${normalizePx(35)};
+  margin-bottom: ${normalizePx(35)};
+  border-radius: 15px;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+`;
+
+const Label = styled.Text`
+  color: black;
+  font-size: 10px;
+  font-weight: bold;
+`;
+
+const Value = styled.Text`
+  color: white;
+`;
+
+const Stats = styled.View`
+  background-color: white;
+  flex: 1;
+  width: 100%;
+  padding: 15px;
+  align-items: center;
+`;
+
+function PokemonDetails({
+  pokemon,
+  pokemonType,
+}: PokemonDetailsProps): JSX.Element {
+  const {pokemonRed} = colors;
+
   return (
-    <View
-      style={{
-        backgroundColor: '#dd4e4e',
-        flex: 1,
-        marginRight: normalizePx(20),
-        marginTop: normalizePx(35),
-        marginBottom: normalizePx(35),
-        borderRadius: 15,
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        overflow: 'hidden',
-      }}>
+    <Container {...{pokemonRed}}>
       <View style={{padding: '5%'}}>
-        <Text style={{color: 'white', fontSize: 10}}>
-          HEIGHT : {pokemon.height} ft
-        </Text>
-        <Text style={{color: 'white', fontSize: 10}}>
-          TYPES : {pokemonType}
-        </Text>
-        <Text style={{color: 'white', fontSize: 10}}>
-          ABILITIES :{' '}
-          {pokemon?.abilities?.map(({ability}) => ability.name).join(', ')}
-        </Text>
+        <Label>
+          HEIGHT : <Value>{pokemon.height} ft</Value>
+        </Label>
+        <Label>
+          TYPES : <Value> {pokemonType}</Value>
+        </Label>
+        <Label>
+          ABILITIES :
+          <Value>
+            {pokemon?.abilities?.map(({ability}) => ability.name).join(', ')}
+          </Value>
+        </Label>
       </View>
-      <View
-        style={{
-          backgroundColor: 'white',
-          flex: 1,
-          width: '100%',
-          padding: 15,
-          alignItems: 'center',
-        }}>
+      <Stats>
         {pokemon?.stats?.map(stat => {
           return (
             <>
@@ -47,10 +70,10 @@ const PokemonDetails = ({pokemon, pokemonType}) => {
             </>
           );
         })}
-      </View>
-    </View>
+      </Stats>
+    </Container>
   );
-};
+}
 
 PokemonDetails.propTypes = {};
 

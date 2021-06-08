@@ -14,27 +14,9 @@ const HomeContainer = styled.View`
 const {Navigator, Screen} = createStackNavigator();
 
 const CategoriesScreen = ({navigation}) => {
-  const Storage = useStorage();
-
-  const [refreshing, setRefreshing] = useState(true);
-
-  useEffect(() => {
-    Storage.dispatch(populatePokemonDB(5, Storage)).then(() => {
-      setRefreshing(false);
-    });
-  }, []);
-
   return (
     <HomeContainer>
-      <ScrollView
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={() => {
-              console.log('refreshing');
-            }}
-          />
-        }>
+      <ScrollView>
         <Text
           style={{
             color: 'white',
