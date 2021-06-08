@@ -5,6 +5,7 @@ import {useQuery} from '@apollo/client';
 import {GET_POKEMONS} from '../../../src/graphQL/pokemon';
 import PokedexSearchBar from '../../../src/uikit/PokedexSearchBar/PokedexSearchBar';
 import styled from 'styled-components/native';
+import SplashScreen from 'react-native-splash-screen';
 
 const Container = styled.View`
   justify-content: center;
@@ -42,6 +43,7 @@ function Pokedex() {
           };
         });
         setMappedPokemon(newMappedPokemon);
+        SplashScreen.hide();
       }
     }
   }, [data, showingSearchResults]);

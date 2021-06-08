@@ -8,7 +8,7 @@ import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
 
 const Initializer: () => React$Node = () => {
   useEffect(() => {
-    SplashScreen.hide();
+    SplashScreen.show();
   }, []);
 
   const client = new ApolloClient({
