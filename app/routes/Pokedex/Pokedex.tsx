@@ -1,9 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, View, ActivityIndicator, RefreshControl} from 'react-native';
+import {FlatList, View, RefreshControl} from 'react-native';
 import PokemonCard from '../../../src/uikit/PokemonCard/PokemonCard';
 import {useQuery} from '@apollo/client';
 import {GET_POKEMONS} from '../../../src/graphQL/pokemon';
 import PokedexSearchBar from '../../../src/uikit/PokedexSearchBar/PokedexSearchBar';
+import styled from 'styled-components/native';
+
+const Container = styled.View`
+  justify-content: center;
+  align-content: center;
+  flex: 1;
+`;
 
 function Pokedex() {
   const [limit, setLimit] = useState(5);
@@ -17,7 +24,8 @@ function Pokedex() {
 
   const [mappedPokemon, setMappedPokemon] = useState([]);
 
-  const [showingSearchResults, setShowingSearchResults] = useState(false);
+  const [showingSearchResults, setShowingSearchResults] =
+    useState<boolean>(false);
 
   useEffect(() => {
     if (data && !showingSearchResults) {
@@ -39,7 +47,7 @@ function Pokedex() {
   }, [data, showingSearchResults]);
 
   return (
-    <View style={{justifyContent: 'center', alignContent: 'center', flex: 1}}>
+    <Container>
       <PokedexSearchBar
         setMappedPokemon={setMappedPokemon}
         setShowingSearchResults={setShowingSearchResults}

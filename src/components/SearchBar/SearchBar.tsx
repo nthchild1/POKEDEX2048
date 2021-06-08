@@ -8,9 +8,7 @@ interface SearchBarProps {
   onSubmit?: Function;
 }
 
-function SearchBar({onChangeText, onSubmit}: SearchBarProps) {
-  const [searchString, setSearchString] = useState<string>('');
-
+function SearchBar({onChangeText, onSubmit}: SearchBarProps): JSX.Element {
   return (
     <View
       style={{
@@ -21,7 +19,7 @@ function SearchBar({onChangeText, onSubmit}: SearchBarProps) {
       <TextInput
         style={{flex: 1, padding: 5}}
         placeholder={'Search pokemon'}
-        onChangeText={onChangeText}
+        {...{onChangeText}}
       />
       <TouchableOpacity onPress={onSubmit}>
         <Image

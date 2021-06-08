@@ -2,8 +2,15 @@ import React, {useEffect, useState} from 'react';
 import {LayoutAnimation, Platform, UIManager, View} from 'react-native';
 import ItemCard from '../../uikit/ItemCard/ItemCard';
 
-const ResourceCard = ({item, children}) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+interface ResourceCardProps {
+  item: {
+    title: string;
+  };
+  children: React.ReactChildren;
+}
+
+function ResourceCard({item, children}: ResourceCardProps): JSX.Element {
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   useEffect(() => {
     if (Platform.OS === 'android') {
@@ -33,6 +40,6 @@ const ResourceCard = ({item, children}) => {
       {isExpanded && children}
     </View>
   );
-};
+}
 
 export default ResourceCard;

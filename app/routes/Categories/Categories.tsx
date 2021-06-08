@@ -1,8 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {RefreshControl, ScrollView, Text, View} from 'react-native';
+import React from 'react';
+import {ScrollView, View} from 'react-native';
 import styled from 'styled-components/native';
-import {useStorage} from '../../reducers/storage/useStorage';
-import {populatePokemonDB} from './Categories.thunks';
 import ItemCard from '../../../src/uikit/ItemCard/ItemCard';
 import {createStackNavigator} from '@react-navigation/stack';
 import ResourceList from './ResourceList/ResourceList';
@@ -11,21 +9,20 @@ const HomeContainer = styled.View`
   background-color: #353535;
 `;
 
+const Title = styled.Text`
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 5%;
+`;
+
 const {Navigator, Screen} = createStackNavigator();
 
 const CategoriesScreen = ({navigation}) => {
   return (
     <HomeContainer>
       <ScrollView>
-        <Text
-          style={{
-            color: 'white',
-            fontSize: 25,
-            fontWeight: 'bold',
-            margin: '5%',
-          }}>
-          Categories
-        </Text>
+        <Title>Categories</Title>
         <View
           style={{
             flexDirection: 'row',
@@ -101,14 +98,14 @@ const CategoriesScreen = ({navigation}) => {
   );
 };
 
-function Categories({navigation}) {
+function Categories({navigation}): JSX.Element {
   return (
-    <Navigator initialRouteName={'CategoriesScreen'} headerMode={'none'}>
-      <Screen name={'ResourceList'} component={ResourceList} />
+    <Navigator initialRouteName="CategoriesScreen" headerMode="none">
+      <Screen name="ResourceList" component={ResourceList} />
       <Screen
-        name={'CategoriesScreen'}
+        name="CategoriesScreen"
         component={CategoriesScreen}
-        navigation={navigation}
+        {...{navigation}}
       />
     </Navigator>
   );
