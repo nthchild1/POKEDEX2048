@@ -15,7 +15,7 @@ function PokedexSearchBar({
   const [searchString, setSearchString] = useState<string>('');
   const {loading, error, data} = useQuery(GET_POKEMON_DETAILS, {
     variables: {
-      name: searchString,
+      name: searchString.toLowerCase(),
     },
   });
 
