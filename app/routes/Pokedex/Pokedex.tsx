@@ -74,7 +74,7 @@ function Pokedex() {
           numColumns={1}
         />
       )}
-    </View>
+    </Container>
   );
 }
 
